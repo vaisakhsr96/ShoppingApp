@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,6 +10,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.NavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,14 +30,38 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
+        setBottomNavigation(navController)
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
 
+    private fun setBottomNavigation(navController: NavController) {
 
+
+        navController?.let {
+            binding.bottomTab.setupWithNavController(it)
+        }
+
+
+
+        navController?.addOnDestinationChangedListener { _, destination, _ ->
+            Log.d("TAG", "setBottomNavigation: ${destination.label}")
+//            viewBinding.tvHeaderText.text = destination.label
+//            when (destination.label) {
+//                getString(R.string.text_home) -> {
+//
+//
+//                }
+//                getString(R.string.text_profile) -> {
+////
+//                }
+//            }
+        }
+
+
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
