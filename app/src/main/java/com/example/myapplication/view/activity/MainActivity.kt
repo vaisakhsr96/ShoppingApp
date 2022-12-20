@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.view.activity
 
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +12,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
